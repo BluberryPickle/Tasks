@@ -1,25 +1,43 @@
 #! /bin/bash
 
-month=$(date +%b)
-day=$(date +%d)
-folder=${month}_${day}
-list="$(ls ~/Downloads)"
-echo $list | while read -r i
+function year () {
+	y=$(date +%Y)
+	
+	if [ ! -d ~/Downloads/$y ]
+	then
+		`mkdir ~/Downloads/$y`
+	fi
+}
+
+function fileSort () {
+
+ls ~/Downloads | while read -r i
 do
-	if [ -f "$i" ]
-	then 
-		fmonth=$(date -r "$i" +%b)
-		fday=$(date -r "$i" +$d)
+	if [ -f ~/Downloads/$i ]
+	then
+		fy=$(date +%Y)
+		fmonth=$(date -r ~/Downloads/$i +%b)
+		fday=$(date -r ~/Downloads/$i +%d)
 		fname=${fmonth}_${fday}
-		if [ -d "$fname" ]
+		echo "fname is $fname"
+		if [ -d ~/Downloads/$fname ]
 		then
-			`mv "$i" ./$fname`
+			`mv ~/Downloads/$i ~/Downloads/$fname/`
+
 		else
 			`mkdir ~/Downloads/$fname`
-			`mv "$i" ./$fname`
+			`mv ~/Downloads/$i ~/Downloads/$fname/`
+		fi
 
 	fi
-done
+	`mv ~/Downloads/$fname ~/Downloads/$fy`
 
-##tofix file path ,mkdir
-##toadd trigger,newyear
+done
+}
+
+year
+fileSort
+
+
+#todo fix subdir issue
+#add cron
