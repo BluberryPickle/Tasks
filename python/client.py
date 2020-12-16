@@ -13,14 +13,10 @@ s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect(('', port)) 
 
 msg = s.recv(2048)
-li=str(msg).split('||') 
-print(msg) 
-#print(li)
-
-'''
+#print(msg)
 while msg: 
     print(str(msg)) 
     msg = s.recv(2048)
-'''
-print(li)
+
+li=str(msg).split('||') 
 s.close() 
