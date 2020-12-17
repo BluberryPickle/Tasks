@@ -30,25 +30,20 @@ def hash_gen(text):
 	return hash 
 
 host = 'local host'
-port = 5001
+port = int(input('Port'))
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('',port))
 s.listen(1)
 c,add = s.accept()	
 print('Connection from : ',str(add))
 cipher, salt, iv = encrypt(input('Enter your text here: '),password)
-
+print(cipher)
 password = b'password'
 hmac_hash = hmac.new(cipher, password, hashlib.sha1)
 #print(hmac_hash.digest())
 c.send(cipher)
-c.send('||'.encode())
 c.send(salt)
-c.send('||'.encode())
 c.send(iv)
-print('sent')
-c.send('||'.encode())
 c.send(hash_gen(cipher).encode())
-c.send('||'.encode())
-c.send(hmac_hash.digest())	
+c.send(hmac_hash.digest())
 c.close()
