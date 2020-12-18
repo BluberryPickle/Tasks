@@ -3,13 +3,12 @@
 #Server side
 import os
 import hashlib
-import base64
 import socket
 from Crypto.Cipher import AES
 from Crypto import Random
 import hmac
 
-password = 'secret'
+password = 'Super_secret_passPhrase12'
 
 def pad(s):
 	block=16
@@ -37,10 +36,9 @@ s.listen(1)
 c,add = s.accept()	
 print('Connection from : ',str(add))
 cipher, salt, iv = encrypt(input('Enter your text here: '),password)
-print(cipher)
-password = b'password'
+password = b'Super_secret_passPhrase12'
 hmac_hash = hmac.new(cipher, password, hashlib.sha1)
-#print(hmac_hash.digest())
+
 c.send(cipher)
 c.send(salt)
 c.send(iv)
