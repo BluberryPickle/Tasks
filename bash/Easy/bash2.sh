@@ -11,4 +11,4 @@ for((i=1;i<=$NUM;i++))
 echo $fact
 }
 
-factorial $NUM
+factorial 

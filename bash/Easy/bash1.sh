@@ -7,7 +7,7 @@ function operations {
 	echo "sum : `expr $1 + $2`"
 	echo "Diffrence : `expr $1 - $2`"
 	echo "Product : `expr $1 \* $2`"
-	echo "Division : `expr $1 + $2`"
+	echo "Division : `expr $1 / $2`"
 }
 
 operations $NUM1 $NUM2
