@@ -7,6 +7,7 @@ import socket
 from Crypto.Cipher import AES
 from Crypto import Random
 import hmac
+import time
 
 password = 'Super_secret_passPhrase12'
 
@@ -40,8 +41,12 @@ password = b'Super_secret_passPhrase12'
 hmac_hash = hmac.new(cipher, password, hashlib.sha1)
 
 c.send(cipher)
+time.sleep(1)
 c.send(salt)
+time.sleep(1)
 c.send(iv)
+time.sleep(1)
 c.send(hash_gen(cipher).encode())
+time.sleep(1)
 c.send(hmac_hash.digest())
 c.close()

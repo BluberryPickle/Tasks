@@ -31,6 +31,7 @@ def check(HMAC,cipher,sha,password,salt,iv):
 		print('Sender verified')
 		if hash_gen(cipher) == sha.decode():
 			print('Integrity check Passed.')
+			print(decrypt(salt,cipher,iv,password))
 		else: print('Integrity failed')
 	else: print('Sender unverified.')
 
@@ -47,6 +48,7 @@ while msg:
 	msg = s.recv(2048)
 
 print('len of li : ',len(li))
+print(li)
 HMAC = li[4]
 cipher = li[0]
 sha = li[3]

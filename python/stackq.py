@@ -11,11 +11,12 @@ for i in range(n):
 	q.put(input())
 print('Appending from queue to stack.')
 
+
 stack = []
 while q.empty()==False:
 	stack.append(q.get())
 
-print('printing stack')
+print('Extracting data from stack')
 
 while stack:
-	print(stack.pop(),end='')
+	print(stack.pop(),end=',')
